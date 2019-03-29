@@ -1,0 +1,154 @@
+This file represents the history of Duh DRAW, it's drawn from all sorts
+of historical files and lore.
+
+27-Jan-2018  [ Unknown ]
+
+Changed the keyboard mappings. The F1-F10 didn't work in gnome-terminal.
+So it has been changed to ALT-0...9.
+
+
+25-Jan-2018  [ Unknown ]
+
+To configure properly duh-term use the following export:
+
+export TERM=vt100
+
+
+02-Feb-1996  [From the Whatdone file]
+
+ Woah. Had a big week. 
+ 'ANSI Master' got a new name (DuhDraw) Courtesy HalfLife :) Thanks Mate.
+ All work on DuhDraw came to a screeching halt due the fact that
+ top was showing it at 96.5% cpu usage. :)
+ The problem was traced back to the fact that the function getchar()
+ was continously returning -1 to indicate no keypress available.
+ After some probing into the nature of tty modes,and just as I was about
+ to do a major kludge of a signal driven keyboard driver,I discovered
+ cbreak() in the curses library.
+ Also thanks to Halflife,there is now the likely hood that pulldown menu's
+ will exist in a future version (using LibMenu).
+ An MDI (Multiple Document Interface) version of DuhDraw is in the
+ works takng much better advantage of LibCurses,something I hardly
+ understood at the time DuhDraw was begun.
+
+ In the meantime,block save has been added. Block load is still in the
+ works,as is block copy,which is still not working yet.
+ It's probable that block move/copy will be implemented by copying a section
+ to a 'clipboard' and then pasting clipboard in etc.
+
+ Looking into the nature of gpm (mouse driver) to add much needed 
+ mouse support. Surely this will become a major point of kludging
+ betwixt the bsd and linux versions.
+
+ Which reminds me,thanks to kmem for working on the BSD port of DuhDraw.
+
+ Added new opening logo screen courtesy Deathblow of The Dirty Dozen.
+
+ Animation mode is still a sticky issue. 
+ The problem is not the scanning modes (gate,pyramid,circle etc..)
+ but the process of appending color changes,cursor pos'es after the fact.
+ We'll see how I feel (and thus how it is finnaly implemented).
+
+ DuhDraw is still a somewhat stupid program in that it assumes VT100+
+ term capabilites and 25 line by 80 char display. Running it with a dumb 
+ terminal will produce truely ugly results and probably result in a 
+ few panicked moments of futile attempts to exit the program. :)
+
+ 'all we do is sit around and play with little colored blocks' - Cavalier
+
+
+06-May-1996  [Reconstructed History]
+v2.6.96      This is the latest date on the .lsm file.  This appears to
+             actually be the date it was submitted to sunsite.unc.edu.
+             The code's origin remain a mystery, other than the name
+             Ben Fowler and an obsolete email address.
+
+04-Apr-2002  After repeated attempts to contact "the" Ben Fowler, I managed
+v2.6.96      to accidently reach "a" Ben Fowler who says he's been fielding
+             responses for the last few years about DuhDraw and that there
+             is much confusion, not to mention no one's heard from Ben. 
+
+             The project has been on FreshMeat.net for quite some time and
+             appears to be abandonware.  As such, I've opted to pick up
+             the task of maintaining it and applying contributed patches.
+
+             Walt Stoneburner, the new maintainer, can be reached at
+             <wls@wwco.com> and the home page for the project is
+             currently http://www.wwco.com/~wls/opensource/duhdraw.php
+
+             Ben, should you return, I'll gladly hand the torch back.
+
+04-Apr-2002  This version compiles under gcc 3.0.1 or better using
+v2.7.0       ncurses.  Known bugs: when the terminal exits, you may
+             not have echoing.  For now, do this:
+               $ stty sane ; clear ; reset
+
+             Fixes include: 
+             - Making the C compiler optimizations more agressive
+             - Using NCURSES instead of CURSES
+             - Include proper headers
+             - General code cleanup and type conversion issues
+             - Fix switch statement problems
+             - Prevent yes/no from falling out without a return value
+             - I/O Flushing so screen reflects state
+             - Resolved nested comments
+             - Fix bulk initializtion
+             - Removed unused variables
+             - Remove compiler warnings
+
+05-Apr-2002  Thanks to Pressly Dowler <squirrel@galaxy7.dhs.org> for
+v2.7.1       contributing a patch which resolved restoring the terminal
+             state to normal when the program ends.  I applied this to
+             both DuhDraw and Ansi.
+
+             Thanks to Tamas TEVESZ <ice@extreme.hu> for contributing
+             a patch to DuhDraw which allowed it to compile with GCC;
+             I had made a goof and use G++ instead.
+
+             New features:
+               In ANSI, you can now use space to do a page down and
+               return to go down one line.
+
+31-Aug-2002  Pekka Enberg <Pekka.Enberg@cs.helsinki.fi> - patch
+v2.7.2       to fix crash when trying to read a file that wasn't open.
+
+03-Sep-2002  Pekka convinced me that the code would be better maintained
+v2.7.3       if it were indented to a better standard.  Consequently, I've
+             run all the sources through indent using the GNU style.
+
+             Formatting changes only.
+
+04-Sep-2002  Pekka Enberg <Pekka.Enberg@cs.helsinki.fi> - patch
+v2.7.4       to remove copy-block code, which always crashed.
+
+04-Sep-2002  Pekka Enberg <Pekka.Enberg@cs.helsinki.fi> reimplements
+v2.7.5       copy-block code from scratch.
+
+             Note, there still appears to be a problem where under
+             some obscure situation you can get a segmentation
+             fault.  However, for the most part this works much
+             better than before.
+
+             I've included a new TODO file which addresses
+             coding and security issues I'd like to get taken
+             care of.
+
+             Minor cleanup was also done to the code in regards
+             to get it to compile without warnings via -Wall.
+
+05-Sep-2002  Pekka Enberg <Pekka.Enberg@cs.helsinki.fi> removes
+2.7.6        dead commented code in an effort to make the code
+             base more maintainable.
+
+05-Sep-2002  Pekka Enberg <Pekka.Enberg@cs.helsinki.fi> repairs
+2.7.7        the copy-block overflow problem.
+
+             As he says, "As it turns out, breaking block copy 
+             isn't that hard to do after all.  Just copy the whole
+             edit buffer (80x1000) to the lower right corner of
+             the edit buffer and whoops, you've got segment violation."
+
+             Fixed.
+
+19-Oct-2002 Joe Klemmer <joe@webtrek.com> fixes RPM spec file.
+2.7.8
